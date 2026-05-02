@@ -155,10 +155,54 @@
   <script src="menu.js"></script>
   
   <script>
-    window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
-    formspree('initForm', { formElement: '#contact-form', formId: 'xlgzdjrj' });
+    const form = document.getElementById('contact-form');
+    const successMessage = document.querySelector('[data-fs-success]');
+    const errorMessage = document.querySelector('[data-fs-error]');
+    const submitBtn = document.querySelector('[data-fs-submit-btn]');
+
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault(); // Stop standard browser submission
+      
+      // Disable button to prevent double-clicks
+      submitBtn.disabled = true;
+      submitBtn.innerText = "Sending...";
+      
+      // Hide success/error messages before new attempt
+      successMessage.classList.add('hidden');
+      errorMessage.classList.add('hidden');
+
+      // 1. Gather the data from the inputs
+      const formData = new FormData(form);
+      const jsonData = Object.fromEntries(formData.entries());
+
+      try {
+        // 2. Send the data explicitly as a JSON object
+        const response = await fetch("https://formspree.io/f/xlgzdjrj", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+          body: JSON.stringify(jsonData)
+        });
+
+        if (response.ok) {
+          successMessage.classList.remove('hidden'); // Show success
+          form.reset(); // Clear the inputs
+        } else {
+          errorMessage.classList.remove('hidden'); // Show error
+          console.error("Formspree Error:", await response.text());
+        }
+      } catch (error) {
+        errorMessage.classList.remove('hidden'); // Show network error
+        console.error("Network Error:", error);
+      } finally {
+        // Re-enable button
+        submitBtn.disabled = false;
+        submitBtn.innerText = "Send message";
+      }
+    });
   </script>
-  <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 </body>
 
 </html>
