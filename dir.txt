@@ -1,0 +1,42 @@
+Folder PATH listing
+Volume serial number is 121D-4BF2
+C:.
+¦   .DS_Store
+¦   .gitattributes
+¦   CNAME
+¦   dir.txt
+¦   index.html
+¦   LICENSE
+¦   _config.yml
+¦   
++---about-me
+¦       index.html
+¦       
++---contact
+¦       index.html
+¦       
++---dist
+¦   ¦   fade_in.js
+¦   ¦   menu.js
+¦   ¦   output.css
+¦   ¦   
+¦   +---assets
+¦           About_Me_Photo.jpg
+¦           Boat_On_the_Seine.jpg
+¦           Circle.jpg
+¦           Colors_Shoot.jpg
+¦           favicon.ico
+¦           Logo.jpg
+¦           Miata_Duo.jpg
+¦           Noir_Reflection.jpg
+¦           Paris.jpg
+¦           Paris_Boat.jpg
+¦           Rearview_Mirror.jpg
+¦           Rearview_Mirror.jpg.bak
+¦           Reflection.jpg
+¦           Singer.jpg
+¦           Swingset.jpg
+¦           
++---src
+        input.css
+        
